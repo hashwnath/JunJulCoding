@@ -1,0 +1,21 @@
+#include <bits/stdc++.h> 
+//same as Count the number of subarrays having a 0 sum.
+int subarraysXor(vector<int> &arr, int x)
+{
+    //    Write your code here.
+    map<int,int> mp;
+//     mp[0]=1;
+    int cxor=0;
+    int res=0;
+    for(auto c:arr)
+    {
+        cxor^=c;
+        if(mp.find(cxor^x)!=mp.end())
+            res+=mp[cxor^x];
+        if(cxor==x) //this check is imp. as it is diff from step in 0 subarray sum prob
+            res++;
+        mp[cxor]++;
+    }
+    return res;
+}
+//logic if a^b=c then c^b=a and a^c=b.
