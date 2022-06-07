@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        unordered_set<int> mp; //use only unorderedset, just set will not work(TLE)
+        for(auto x:nums)
+        mp.insert(x);
+        int MaxLen=0;
+        for(auto x:nums)
+        {
+            int currLen=0; 
+            if(mp.find(x-1)!=mp.end())
+                continue;
+            while(mp.find(x)!=mp.end())
+            {
+                currLen++;
+                x++;
+            }
+            MaxLen=max(MaxLen,currLen);
+        }
+        
+        return MaxLen;
+    }
+};
