@@ -1,0 +1,32 @@
+#include <bits/stdc++.h> 
+long getTrappedWater(long *arr, int n){
+    // Write your code here.
+    if(n==0)
+        return 0;
+    //build left and right maxs upto that point(s)
+    vector<long> leftMax;
+    vector<long> rightMax(n);
+    long res=0;
+    long lmax=arr[0];
+    long rmax=arr[n-1];
+    leftMax.push_back(arr[0]);
+    for(int i=1;i<n;i++)
+    {
+        if(arr[i]>lmax)
+            lmax=arr[i];
+        leftMax.push_back(lmax);
+    }
+    rightMax[n-1]=arr[n-1];
+    for(int i=n-2;i>=0;i--)
+    {
+        if(arr[i]>rmax)
+            rmax=arr[i];
+        rightMax[i]=rmax;
+    }
+    //--
+    for(int i=1;i<n-1;i++)
+    {
+        res+=min(leftMax[i],rightMax[i])-arr[i]>0?min(leftMax[i],rightMax[i])-arr[i]:0;
+    }
+    return res;
+}
