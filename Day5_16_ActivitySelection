@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+bool comparator(vector<int> v1, vector<int> v2)
+{
+    return v1[1]<v2[1];
+}
+int maximumActivities(vector<int> &start, vector<int> &finish) {
+    // Write your code here.
+    vector<vector<int>> act;
+    int n=start.size();
+    for(int i=0;i<n;i++)
+    {
+        act.push_back({start[i],finish[i]});
+    }
+    sort(act.begin(),act.end(),comparator);
+    int res=1; //1st act by default
+    int l=0; //last done activity
+    for(int i=1;i<n;i++)
+    {
+        if(act[i][0]>=act[l][1])
+        {
+            l=i;
+            res++;
+        }
+    }
+    return res;
+}
