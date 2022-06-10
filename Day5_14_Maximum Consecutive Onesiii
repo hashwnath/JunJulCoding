@@ -1,0 +1,25 @@
+int longestSubSeg(vector<int> &arr , int n, int k){
+    // Write your code here.
+    //sliding window- flip only consequtive k zeroes for max 1
+    int i=0;
+    int j=0; //i to j is a window full of 1s after flips
+    int flips=0;
+    int res=0;
+    while(i<n)
+    {
+        if(arr[i]==0)
+            flips++;
+        while(flips>k)
+        {
+            if(arr[j]==0)
+            {
+                flips--;
+            }
+            j++;
+        }
+        //now i to j is a window full of 1s after k flips
+        res=max(res,i-j+1);
+        i++;
+    }
+    return res;
+}
