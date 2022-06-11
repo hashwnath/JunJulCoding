@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+void helper(int idx,vector<int> arr,vector<int> subset, set<vector<int>> &sres)
+{
+    if(idx==arr.size())
+    {
+        vector<int> t=subset; //use temp array to avoid disturding subset as it goes in order
+        sort(t.begin(),t.end()); //sort to identify redundancy of subsets pushed into set
+        sres.insert(t);
+        return;
+    }
+    //dont pick idx
+    helper(idx+1,arr,subset,sres);
+    //pick idx
+    subset.push_back(arr[idx]);
+     helper(idx+1,arr,subset,sres);
+    subset.pop_back();
+}
+vector<vector<int>> uniqueSubsets(int n, vector<int> &arr)
+{
+    // Write your code here.
+    vector<vector<int>> res;
+    set<vector<int>> sres;
+    vector<int> subset;
+    helper(0,arr,subset,sres);
+    for(auto x:sres)
+        res.push_back(x);
+    return res;
+}
