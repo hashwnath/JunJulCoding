@@ -1,0 +1,21 @@
+void helper(int idx,vector<int> num, vector<int> & res, int sum)
+{
+    if(idx==num.size())
+    {
+        res.push_back(sum);
+        return;
+    }
+    //pick idx
+    helper(idx+1,num,res,num[idx]+sum);
+    //dont pick idx
+    helper(idx+1,num,res,sum);
+}
+vector<int> subsetSum(vector<int> &num)
+{
+    // Write your code here.
+    vector<int> res;
+    int n=num.size();
+    helper(0,num,res,0);
+    sort(res.begin(),res.end());
+    return res;
+}
