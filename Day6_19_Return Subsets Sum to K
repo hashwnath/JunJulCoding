@@ -1,0 +1,30 @@
+void helper(int idx,vector<int> arr,vector<int> &subset,vector<vector<int>> &res, int &sum, int k)
+{
+   
+    if(idx==arr.size())
+    {
+      
+ if(sum==k) //sum check should be done only after all arr check(idx--n)
+        res.push_back(subset);
+        return;
+    
+    }
+    //dont pick idx
+    helper(idx+1,arr,subset,res,sum,k);
+    //pick idx
+    int curr=arr[idx];
+    sum+=curr;
+    subset.push_back(curr);
+    helper(idx+1,arr,subset,res,sum,k);
+    subset.pop_back();
+    sum-=curr;
+}
+vector<vector<int>> findSubsetsThatSumToK(vector<int> arr, int n, int k)
+{
+    // Write your code here.
+    vector<vector<int>> res;
+    vector<int> subset;
+    int sum=0;
+    helper(0,arr,subset,res,sum,k);
+    return res;
+}
