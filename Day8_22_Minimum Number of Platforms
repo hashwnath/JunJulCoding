@@ -1,0 +1,31 @@
+ int findPlatform(int arr[], int dep[], int n)
+    {
+    	// Your code here
+    	if(n==1)
+    	return 1;
+    	sort(arr,arr+n);
+    	sort(dep,dep+n); 
+    	int p=1; //no.of platforms , initially 1 as it is must
+    	int i=1; //arr pointer, initilly to 2nd val as 1st val/train bydefault needs platform
+    	int j=0; //dep pointer
+//we will track for a given train, no.of trains that arr before its dep.so we incr p accord
+//we will track for a given train no.of trains that dept before its ars so we dec p accor
+//using two pointwe
+int res=1;
+while(i<n && j<n)
+{
+    if(arr[i]<=dep[j])
+    {
+        
+        p++;
+        i++;
+    }
+    else
+    {
+      p--;
+       j++;
+    }
+    res=max(res,p);
+}
+return res;
+    }
