@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+string reverseString(string str)
+{
+    // Write your code here.
+    vector<string> v;
+   stringstream ss(str);
+    string temp_str;
+     while(getline(ss, temp_str, ' ')){ //use comma as delim for cutting string
+      v.push_back(temp_str);
+     }
+//     for(auto &x:v)
+//     {
+//         reverse(x.begin(),x.end());
+//     }
+    reverse(v.begin(),v.end());
+    str="";
+    for(auto x:v)
+    {
+        str+=x;
+        str+=" ";
+    }
+    while(str.front()==' ')
+        str.erase(str.begin());
+     while(str.back()==' ')
+        str.pop_back();
+   
+    return str;
+}
