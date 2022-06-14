@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+bool comparator(pair<int, int> p1, pair<int, int> p2)
+{    //sort based on val/weight, in descending order, high ratio is placed first.
+
+    return (double)p1.second/(double)p1.first>(double)p2.second/(double)p2.first;
+}
+double maximumValue (vector<pair<int, int>>& items, int n, int w)
+{
+    // Write your code here.
+    // ITEMS contains {weight, value} pairs.
+    //initialization for recur and dp matrix build 
+    //sort based on val/weight, in descending order, high ratio is placed first.
+    sort(items.begin(),items.end(),comparator);
+    double res=0.0;
+    for(int i=0;i<n;i++)
+    {
+        if(w>=items[i].first)
+        {
+            w=w-items[i].first;
+            res+=items[i].second;
+        }
+        else
+        {
+            res+=items[i].second*((double)w/(double)items[i].first);
+            return res;
+        }
+    }
+    return res;
+    
+}
