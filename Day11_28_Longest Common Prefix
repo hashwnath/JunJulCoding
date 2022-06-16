@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+string longestCommonPrefix(vector<string> &arr, int n)
+{
+    // Write your code here
+    int minl=INT_MAX;
+    string res="";
+    for(auto x:arr)
+   { 
+        minl=minl<x.length()?minl:x.length();
+    }
+    if(minl==0 || n==0)
+        return "";
+    for(int i=0;i<minl;i++)
+    {
+        int c=1; //count of same current char in no.of stri
+        char ch=arr[0][i];
+        for(int j=1;j<n;j++)
+        {
+         if(arr[j][i]==ch)
+             c++;
+            else
+                return res;
+        }
+        if(c==n)
+            res+=ch;
+    }
+    return res;
+}
+
+
