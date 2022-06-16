@@ -1,0 +1,19 @@
+//App-1'-------Brute force----
+vector<int> stringMatch(string &str, string &pat) {
+    // Write your code here
+    vector<int> res;
+    int n1=str.length();
+    int n2=pat.length();
+    char ch=pat[0];
+    for(int i=0;i<=n1-n2;i++)
+    {
+        if(str[i]==ch && str.substr(i,n2)==pat)
+        {
+             res.push_back(i);
+        }
+    }
+    return res;
+}
+//----------
+//App2---------
+Use Rabib Crap ALgorithm i.e Rolling hash method.
